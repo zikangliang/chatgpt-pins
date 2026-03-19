@@ -1,0 +1,9 @@
+export const EXTENSION_ROOT_ID = 'chatgpt-pins-root'
+export const GLOBAL_HIGHLIGHT_STYLE_ID = 'chatgpt-pins-highlight-style'
+export const ACTIVE_TRACKER_OFFSET_PX = 160
+export const NAVIGATION_SCROLL_OFFSET_PX = 96
+export const PANEL_WIDTH_PX = 300
+export const COLLAPSED_WIDTH_PX = 48
+export const TOOLTIP_PREVIEW_LENGTH = 96
+export const SUMMARY_LENGTH = 48
+export const ROOT_Z_INDEX = '2147483647'

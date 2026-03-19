@@ -1,0 +1,27 @@
+# System files
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.*
+
+# Editor files
+.idea/
+.vscode/
+
+# TypeScript / tooling caches
+*.tsbuildinfo
+.eslintcache

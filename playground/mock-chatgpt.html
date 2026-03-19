@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Pins Playground</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          'SF Pro Display', 'PingFang SC', 'Segoe UI', sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(125, 211, 252, 0.3), transparent 28%),
+          linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+        color: #0f172a;
+      }
+
+      body.dark {
+        color-scheme: dark;
+        background:
+          radial-gradient(circle at top left, rgba(14, 116, 144, 0.35), transparent 28%),
+          linear-gradient(180deg, #020617 0%, #0f172a 100%);
+        color: #e2e8f0;
+      }
+
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 18px 24px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      }
+
+      body.dark .toolbar {
+        background: rgba(2, 6, 23, 0.76);
+        border-bottom-color: rgba(71, 85, 105, 0.45);
+      }
+
+      .toolbar button {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 14px;
+        background: #0f172a;
+        color: #f8fafc;
+        cursor: pointer;
+      }
+
+      body.dark .toolbar button {
+        background: #e2e8f0;
+        color: #0f172a;
+      }
+
+      .layout {
+        width: min(980px, calc(100vw - 40px));
+        margin: 0 auto;
+        padding: 32px 0 120px;
+      }
+
+      .chat-scroll-area {
+        height: min(72vh, 860px);
+        overflow-y: auto;
+        padding-right: 10px;
+        scroll-behavior: smooth;
+      }
+
+      .intro {
+        margin-bottom: 24px;
+      }
+
+      .intro h1 {
+        margin: 0 0 8px;
+        font-size: clamp(28px, 4vw, 42px);
+      }
+
+      .intro p {
+        margin: 0;
+        max-width: 720px;
+        color: #475569;
+        line-height: 1.7;
+      }
+
+      body.dark .intro p {
+        color: #94a3b8;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      article[data-testid^='conversation-turn-'] {
+        min-height: 240px;
+        padding: 28px;
+        border-radius: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 14px 48px rgba(15, 23, 42, 0.08);
+      }
+
+      body.dark article[data-testid^='conversation-turn-'] {
+        background: rgba(15, 23, 42, 0.84);
+        border-color: rgba(71, 85, 105, 0.45);
+      }
+
+      [data-message-author-role='user']::before,
+      [data-message-author-role='assistant']::before {
+        display: inline-block;
+        margin-bottom: 14px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #64748b;
+      }
+
+      [data-message-author-role='user']::before {
+        content: 'User';
+      }
+
+      [data-message-author-role='assistant']::before {
+        content: 'Assistant';
+      }
+
+      pre {
+        padding: 16px;
+        border-radius: 16px;
+        overflow: auto;
+        background: rgba(15, 23, 42, 0.08);
+      }
+
+      body.dark pre {
+        background: rgba(148, 163, 184, 0.12);
+      }
+
+      p,
+      li {
+        line-height: 1.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button id="add-user-message" type="button">添加用户消息</button>
+      <button id="add-assistant-message" type="button">添加助手消息</button>
+      <button id="switch-conversation" type="button">切换会话</button>
+      <button id="toggle-theme" type="button">切换主题</button>
+    </div>
+    <div class="layout">
+      <section class="intro">
+        <h1>ChatGPT Pins Playground</h1>
+        <p>这是一个本地模拟页面，用于验证会话导航插件在长消息、代码块、动态新增和会话切换场景下的行为。</p>
+      </section>
+      <div class="chat-scroll-area">
+        <main id="conversation-root"></main>
+      </div>
+    </div>
+    <script type="module" src="/playground/mock-chatgpt.ts"></script>
+    <script type="module" src="/src/content/index.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "chatgpt-pins",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev:playground",
+    "dev:playground": "vite --config vite.playground.config.ts --host 127.0.0.1 --port 4173 --strictPort",
+    "dev:extension": "vite build --watch",
+    "build": "vite build && npm run check:bundle",
+    "check:bundle": "node -e \"const fs=require('node:fs');const path=require('node:path');const dir=path.join(process.cwd(),'dist','assets');const files=fs.readdirSync(dir).filter((name)=>name.endsWith('.js'));if(files.length===0){throw new Error('No built JS assets found in dist/assets')}for(const file of files){require('node:child_process').execFileSync(process.execPath,['--check',path.join(dir,file)],{stdio:'inherit'})}\"",
+    "lint": "eslint src playground vite.config.ts vite.playground.config.ts vitest.config.ts playwright.config.ts eslint.config.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.4.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.58.2",
+    "@types/chrome": "^0.1.38",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
+    "jsdom": "^29.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.1",
+    "uri-js": "^4.4.1",
+    "vite": "^8.0.1",
+    "vitest": "^4.1.0"
+  }
+}
