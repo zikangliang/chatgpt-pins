@@ -4,6 +4,8 @@ Message-level navigation for long ChatGPT conversations.
 
 `ChatGPT Pins` is a browser extension for ChatGPT Web that builds a lightweight navigation panel from your own messages, so you can jump back to previous prompts, constraints, code snippets, and decision points without fighting the scrollbar.
 
+English | [简体中文](README.zh-CN.md)
+
 ## Quick start (TL;DR)
 
 Runtime: Node `>= 22`.
